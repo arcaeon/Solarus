@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>Solarus.Mvvm</PackageId>
+    <Version>1.0.0-alpha.1</Version>
+    <Authors>Arcaeon</Authors>
+    <Description>MVVM framework and toolkit for .NET Core WPF applications.</Description>
+    <Copyright>© 2020 Arcaeon</Copyright>
+    <PackageTags>MVVM WPF</PackageTags>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugType>full</DebugType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugType>none</DebugType>
+  </PropertyGroup>
+
+</Project>
