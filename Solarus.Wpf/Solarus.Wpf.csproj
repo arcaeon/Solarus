@@ -6,4 +6,10 @@
     <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <PackageId>Solarus.Wpf</PackageId>
+    <Description>WPF toolkit for .NET Core.</Description>
+    <PackageTags>WPF XAML</PackageTags>
+  </PropertyGroup>
+
 </Project>

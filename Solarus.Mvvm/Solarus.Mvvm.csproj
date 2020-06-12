@@ -7,19 +7,8 @@
 
   <PropertyGroup>
     <PackageId>Solarus.Mvvm</PackageId>
-    <Version>1.0.0-alpha.1</Version>
-    <Authors>Arcaeon</Authors>
-    <Description>MVVM framework and toolkit for .NET Core WPF applications.</Description>
-    <Copyright>© 2020 Arcaeon</Copyright>
-    <PackageTags>MVVM WPF</PackageTags>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <DebugType>full</DebugType>
-  </PropertyGroup>
-
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <DebugType>none</DebugType>
+    <Description>Solarus is a lightweight MVVM framework and toolkit for .NET Core WPF applications.</Description>
+    <PackageTags>MVVM WPF XAML</PackageTags>
   </PropertyGroup>
 
 </Project>
