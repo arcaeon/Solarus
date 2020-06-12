@@ -1,15 +1,20 @@
 ﻿using System;
 using System.Globalization;
-using System.Windows;
 using System.Windows.Data;
 
-namespace Solarus.Mvvm.Converters
+namespace Solarus.Wpf.Converters
 {
-    public class NullToVisibilityConverter : IValueConverter
+    [ValueConversion(typeof(bool), typeof(bool))]
+    public class InverseBooleanConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value == null ? Visibility.Hidden : Visibility.Visible;
+            if (targetType != typeof(bool))
+            {
+                throw new InvalidOperationException("The target must be a boolean.");
+            }
+
+            return value != null && !(bool)value;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

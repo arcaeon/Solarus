@@ -2,7 +2,7 @@
 using System.Globalization;
 using System.Windows.Data;
 
-namespace Solarus.Mvvm.Converters
+namespace Solarus.Wpf.Converters
 {
     [ValueConversion(typeof(string[]), typeof(string))]
     public class StringArrayToStringConverter : IValueConverter
