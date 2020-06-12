@@ -7,10 +7,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solarus.Mvvm", "Solarus.Mvv
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{99B3ABD3-DEDA-4F92-8B31-F844D28E5A47}"
 	ProjectSection(SolutionItems) = preProject
+		Directory.Build.props = Directory.Build.props
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Solarus.Wpf", "Solarus.Wpf\Solarus.Wpf.csproj", "{3ABA0224-AB79-4BCA-9B2A-180D28804F00}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Solarus.Wpf", "Solarus.Wpf\Solarus.Wpf.csproj", "{3ABA0224-AB79-4BCA-9B2A-180D28804F00}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
