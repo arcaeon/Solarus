@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Solarus.Mvvm.Controls
+namespace Solarus.Wpf.Controls
 {
     /// <summary>
     /// Interaction logic for DialogWindow.xaml

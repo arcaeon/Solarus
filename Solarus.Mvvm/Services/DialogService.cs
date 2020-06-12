@@ -1,4 +1,4 @@
-﻿using Solarus.Mvvm.Controls;
+﻿using Solarus.Wpf.Controls;
 using System.ComponentModel;
 using System.Windows;
 
