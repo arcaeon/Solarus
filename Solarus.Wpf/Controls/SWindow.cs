@@ -355,7 +355,15 @@ namespace Solarus.Wpf.Controls
                 SetDefaultIcon();
             }
 
+            SourceInitialized += OnSourceInitialized;
+
             base.OnInitialized(e);
+        }
+
+        private void OnSourceInitialized(object sender, EventArgs e)
+        {
+            InvalidateMeasure();
+            SourceInitialized -= OnSourceInitialized;
         }
 
         private void OnIconMouseDown(object sender, MouseButtonEventArgs e)
