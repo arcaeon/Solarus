@@ -1,5 +1,6 @@
 ﻿using Solarus.Wpf.Controls;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 
 namespace Solarus.Mvvm.Services
@@ -28,7 +29,7 @@ namespace Solarus.Mvvm.Services
             var dialog = new DialogWindow
             {
                 DataContext = dataContext,
-                Owner = Application.Current.MainWindow,
+                Owner = GetActiveWindow(),
                 ShowInTaskbar = false,
                 Title = title
             };
@@ -57,6 +58,11 @@ namespace Solarus.Mvvm.Services
                 MessageBoxType.Information => ShowInformation(message, title),
                 _ => throw new InvalidEnumArgumentException(nameof(messageBoxType), (int)messageBoxType, typeof(MessageBoxType))
             };
+        }
+
+        private static Window GetActiveWindow()
+        {
+            return Application.Current.Windows.OfType<Window>().FirstOrDefault(x => x.IsActive);
         }
 
         private static MessageBoxResult ShowDefault(string message, string title)
