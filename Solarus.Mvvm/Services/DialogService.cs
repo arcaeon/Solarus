@@ -14,10 +14,15 @@ namespace Solarus.Mvvm.Services
 
         public void ShowDialog(ICloseable dataContext)
         {
-            ShowDialog(dataContext, null);
+            ShowDialog(dataContext, null, null);
         }
 
         public void ShowDialog(ICloseable dataContext, string title)
+        {
+            ShowDialog(dataContext, title, null);
+        }
+
+        public void ShowDialog(ICloseable dataContext, string title, Style style)
         {
             title ??= GetMainWindowTitle();
             var dialog = new DialogWindow
@@ -27,6 +32,11 @@ namespace Solarus.Mvvm.Services
                 ShowInTaskbar = false,
                 Title = title
             };
+
+            if (style != null)
+            {
+                dialog.Style = style;
+            }
 
             dataContext.CloseRequested += (s, e) => dialog.Close();
             dialog.ShowDialog();
