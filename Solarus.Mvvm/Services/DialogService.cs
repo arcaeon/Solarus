@@ -24,7 +24,7 @@ namespace Solarus.Mvvm.Services
 
         public void ShowDialog(ICloseable dataContext, string title, Style style)
         {
-            title ??= GetMainWindowTitle();
+            title ??= string.Empty;
             var dialog = new DialogWindow
             {
                 DataContext = dataContext,
@@ -59,14 +59,9 @@ namespace Solarus.Mvvm.Services
             };
         }
 
-        private static string GetMainWindowTitle()
-        {
-            return Application.Current.MainWindow?.Title;
-        }
-
         private static MessageBoxResult ShowDefault(string message, string title)
         {
-            title ??= GetMainWindowTitle();
+            title ??= string.Empty;
             return MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.None);
         }
 
@@ -84,7 +79,7 @@ namespace Solarus.Mvvm.Services
 
         private static MessageBoxResult ShowInformation(string message, string title)
         {
-            title ??= GetMainWindowTitle();
+            title ??= string.Empty;
             return MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Information);
         }
     }
