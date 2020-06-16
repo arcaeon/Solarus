@@ -13,6 +13,22 @@ namespace Solarus.Mvvm.Services
 
         public static DialogService Instance { get; } = new DialogService();
 
+        public void Show(ICloseable dataContext)
+        {
+            Show(dataContext, null, null);
+        }
+
+        public void Show(ICloseable dataContext, string title)
+        {
+            Show(dataContext, title, null);
+        }
+
+        public void Show(ICloseable dataContext, string title, Style style)
+        {
+            DialogWindow dialog = CreateDialog(dataContext, title, style);
+            dialog.Show();
+        }
+
         public void ShowDialog(ICloseable dataContext)
         {
             ShowDialog(dataContext, null, null);
@@ -25,21 +41,7 @@ namespace Solarus.Mvvm.Services
 
         public void ShowDialog(ICloseable dataContext, string title, Style style)
         {
-            title ??= string.Empty;
-            var dialog = new DialogWindow
-            {
-                DataContext = dataContext,
-                Owner = GetActiveWindow(),
-                ShowInTaskbar = false,
-                Title = title
-            };
-
-            if (style != null)
-            {
-                dialog.Style = style;
-            }
-
-            dataContext.CloseRequested += (s, e) => dialog.Close();
+            DialogWindow dialog = CreateDialog(dataContext, title, style);
             dialog.ShowDialog();
         }
 
@@ -58,6 +60,26 @@ namespace Solarus.Mvvm.Services
                 MessageBoxType.Information => ShowInformation(message, title),
                 _ => throw new InvalidEnumArgumentException(nameof(messageBoxType), (int)messageBoxType, typeof(MessageBoxType))
             };
+        }
+
+        private static DialogWindow CreateDialog(ICloseable dataContext, string title, Style style)
+        {
+            title ??= string.Empty;
+            var dialog = new DialogWindow
+            {
+                DataContext = dataContext,
+                Owner = GetActiveWindow(),
+                ShowInTaskbar = false,
+                Title = title
+            };
+
+            if (style != null)
+            {
+                dialog.Style = style;
+            }
+
+            dataContext.CloseRequested += (s, e) => dialog.Close();
+            return dialog;
         }
 
         private static Window GetActiveWindow()
