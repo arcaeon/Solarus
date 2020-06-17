@@ -276,7 +276,7 @@ namespace Solarus.Wpf.Controls
 
         public object TitleBarContent
         {
-            get { return (object)GetValue(TitleBarContentProperty); }
+            get { return GetValue(TitleBarContentProperty); }
             set { SetValue(TitleBarContentProperty, value); }
         }
 
