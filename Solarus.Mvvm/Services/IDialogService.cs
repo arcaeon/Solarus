@@ -7,9 +7,9 @@ namespace Solarus.Mvvm.Services
         void Show(ICloseable dataContext);
         void Show(ICloseable dataContext, string title);
         void Show(ICloseable dataContext, string title, Style style);
-        void ShowDialog(ICloseable dataContext);
-        void ShowDialog(ICloseable dataContext, string title);
-        void ShowDialog(ICloseable dataContext, string title, Style style);
+        bool? ShowDialog(ICloseable dataContext);
+        bool? ShowDialog(ICloseable dataContext, string title);
+        bool? ShowDialog(ICloseable dataContext, string title, Style style);
         MessageBoxResult ShowMessageBox(MessageBoxType messageBoxType, string message);
         MessageBoxResult ShowMessageBox(MessageBoxType messageBoxType, string message, string title);
     }

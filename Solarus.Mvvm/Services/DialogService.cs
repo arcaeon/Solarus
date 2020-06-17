@@ -25,24 +25,24 @@ namespace Solarus.Mvvm.Services
 
         public void Show(ICloseable dataContext, string title, Style style)
         {
-            DialogWindow dialog = CreateDialog(dataContext, title, style);
+            DialogWindow dialog = CreateDialog(dataContext, title, style, false);
             dialog.Show();
         }
 
-        public void ShowDialog(ICloseable dataContext)
+        public bool? ShowDialog(ICloseable dataContext)
         {
-            ShowDialog(dataContext, null, null);
+            return ShowDialog(dataContext, null, null);
         }
 
-        public void ShowDialog(ICloseable dataContext, string title)
+        public bool? ShowDialog(ICloseable dataContext, string title)
         {
-            ShowDialog(dataContext, title, null);
+            return ShowDialog(dataContext, title, null);
         }
 
-        public void ShowDialog(ICloseable dataContext, string title, Style style)
+        public bool? ShowDialog(ICloseable dataContext, string title, Style style)
         {
-            DialogWindow dialog = CreateDialog(dataContext, title, style);
-            dialog.ShowDialog();
+            DialogWindow dialog = CreateDialog(dataContext, title, style, true);
+            return dialog.ShowDialog();
         }
 
         public MessageBoxResult ShowMessageBox(MessageBoxType messageBoxType, string message)
@@ -62,7 +62,7 @@ namespace Solarus.Mvvm.Services
             };
         }
 
-        private static DialogWindow CreateDialog(ICloseable dataContext, string title, Style style)
+        private static DialogWindow CreateDialog(ICloseable dataContext, string title, Style style, bool isModal)
         {
             title ??= string.Empty;
             var dialog = new DialogWindow
@@ -76,6 +76,12 @@ namespace Solarus.Mvvm.Services
             if (style != null)
             {
                 dialog.Style = style;
+            }
+
+            if (isModal)
+            {
+                dataContext.AcceptRequested += (s, e) => dialog.DialogResult = true;
+                dataContext.CancelRequested += (s, e) => dialog.DialogResult = false;
             }
 
             dataContext.CloseRequested += (s, e) => dialog.Close();
