@@ -15,33 +15,23 @@ namespace Solarus.Mvvm.Services
 
         public void Show(ICloseable dataContext)
         {
-            Show(dataContext, null, null);
+            Show(dataContext, null);
         }
 
-        public void Show(ICloseable dataContext, string title)
+        public void Show(ICloseable dataContext, Style style)
         {
-            Show(dataContext, title, null);
-        }
-
-        public void Show(ICloseable dataContext, string title, Style style)
-        {
-            DialogWindow dialog = CreateDialog(dataContext, title, style, false);
+            DialogWindow dialog = CreateDialog(dataContext, style, false);
             dialog.Show();
         }
 
         public bool? ShowDialog(ICloseable dataContext)
         {
-            return ShowDialog(dataContext, null, null);
+            return ShowDialog(dataContext, null);
         }
 
-        public bool? ShowDialog(ICloseable dataContext, string title)
+        public bool? ShowDialog(ICloseable dataContext, Style style)
         {
-            return ShowDialog(dataContext, title, null);
-        }
-
-        public bool? ShowDialog(ICloseable dataContext, string title, Style style)
-        {
-            DialogWindow dialog = CreateDialog(dataContext, title, style, true);
+            DialogWindow dialog = CreateDialog(dataContext, style, true);
             return dialog.ShowDialog();
         }
 
@@ -62,15 +52,13 @@ namespace Solarus.Mvvm.Services
             };
         }
 
-        private static DialogWindow CreateDialog(ICloseable dataContext, string title, Style style, bool isModal)
+        private static DialogWindow CreateDialog(ICloseable dataContext, Style style, bool isModal)
         {
-            title ??= string.Empty;
             var dialog = new DialogWindow
             {
                 DataContext = dataContext,
                 Owner = GetActiveWindow(),
-                ShowInTaskbar = false,
-                Title = title
+                ShowInTaskbar = false
             };
 
             if (style != null)

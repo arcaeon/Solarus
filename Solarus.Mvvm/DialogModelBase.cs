@@ -5,9 +5,17 @@ namespace Solarus.Mvvm
 {
     public abstract class DialogModelBase : ViewModelBase, ICloseable
     {
+        private string _title;
+
         public event EventHandler AcceptRequested;
         public event EventHandler CancelRequested;
         public event EventHandler CloseRequested;
+
+        public string Title
+        {
+            get { return _title; }
+            set { SetProperty(ref _title, value); }
+        }
 
         public ICommand AcceptCommand
         {
