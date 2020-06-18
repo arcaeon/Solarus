@@ -350,11 +350,6 @@ namespace Solarus.Wpf.Controls
 
         protected override void OnInitialized(EventArgs e)
         {
-            if (Icon == null)
-            {
-                SetDefaultIcon();
-            }
-
             SourceInitialized += OnSourceInitialized;
 
             base.OnInitialized(e);
@@ -362,6 +357,11 @@ namespace Solarus.Wpf.Controls
 
         private void OnSourceInitialized(object sender, EventArgs e)
         {
+            if (Icon == null)
+            {
+                SetDefaultIcon();
+            }
+
             InvalidateMeasure();
             SourceInitialized -= OnSourceInitialized;
         }
