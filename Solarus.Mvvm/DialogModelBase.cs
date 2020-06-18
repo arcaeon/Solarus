@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace Solarus.Mvvm
 {
@@ -10,6 +11,8 @@ namespace Solarus.Mvvm
         public event EventHandler AcceptRequested;
         public event EventHandler CancelRequested;
         public event EventHandler CloseRequested;
+
+        public ImageSource Icon { get; set; }
 
         public string Title
         {
