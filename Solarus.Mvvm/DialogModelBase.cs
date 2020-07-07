@@ -37,15 +37,30 @@ namespace Solarus.Mvvm
 
         public void Accept(object o)
         {
-            AcceptRequested?.Invoke(this, EventArgs.Empty);
+            OnAcceptRequested();
         }
 
         public void Cancel(object o)
         {
-            CancelRequested?.Invoke(this, EventArgs.Empty);
+            OnCancelRequested();
         }
 
         public void Close(object o)
+        {
+            OnCloseRequested();
+        }
+
+        protected virtual void OnAcceptRequested()
+        {
+            AcceptRequested?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnCancelRequested()
+        {
+            CancelRequested?.Invoke(this, EventArgs.Empty);
+        }
+
+        protected virtual void OnCloseRequested()
         {
             CloseRequested?.Invoke(this, EventArgs.Empty);
         }
