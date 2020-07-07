@@ -2,6 +2,6 @@
 {
     public interface IViewModelFactory
     {
-        T Create<T>(params object[] args);
+        T Create<T>(params object[] args) where T : ViewModelBase;
     }
 }

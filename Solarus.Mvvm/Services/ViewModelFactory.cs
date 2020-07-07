@@ -30,7 +30,7 @@ namespace Solarus.Mvvm.Services
             }
         }
 
-        public T Create<T>(params object[] args)
+        public T Create<T>(params object[] args) where T : ViewModelBase
         {
             ConstructorInfo ctor = typeof(T).GetConstructors().Single();
             ParameterInfo[] parameters = ctor.GetParameters();
