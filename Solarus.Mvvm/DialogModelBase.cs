@@ -22,17 +22,17 @@ namespace Solarus.Mvvm
 
         public ICommand AcceptCommand
         {
-            get { return new DelegateCommand(Accept); }
+            get { return new ActionCommand(Accept); }
         }
 
         public ICommand CancelCommand
         {
-            get { return new DelegateCommand(Cancel); }
+            get { return new ActionCommand(Cancel); }
         }
 
         public ICommand CloseCommand
         {
-            get { return new DelegateCommand(Close); }
+            get { return new ActionCommand(Close); }
         }
 
         public void Accept(object o)
