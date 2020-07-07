@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Solarus.Mvvm.Services
 {
-    public class ViewModelFactory : IViewModelFactory
+    public sealed class ViewModelFactory : IViewModelFactory
     {
         private static ViewModelFactory _instance;
         private readonly IServiceProvider _serviceProvider;
@@ -30,11 +30,16 @@ namespace Solarus.Mvvm.Services
             }
         }
 
+        public static void InitializeInstance(IServiceProvider serviceProvider)
+        {
+            _instance = new ViewModelFactory(serviceProvider);
+        }
+
         public T Create<T>(params object[] args) where T : ViewModelBase
         {
             ConstructorInfo ctor = typeof(T).GetConstructors().Single();
             ParameterInfo[] parameters = ctor.GetParameters();
-            List<object> instanceArgs = new List<object>();
+            var instanceArgs = new List<object>();
 
             foreach (ParameterInfo param in parameters)
             {
@@ -51,11 +56,6 @@ namespace Solarus.Mvvm.Services
             }
 
             return (T)Activator.CreateInstance(typeof(T), instanceArgs.ToArray());
-        }
-
-        public static void InitializeInstance(IServiceProvider serviceProvider)
-        {
-            _instance = new ViewModelFactory(serviceProvider);
         }
     }
 }
