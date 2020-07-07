@@ -10,14 +10,10 @@ namespace Solarus.Wpf.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null)
-            {
                 return Binding.DoNothing;
-            }
-            
+
             if (value.GetType() != typeof(string[]))
-            {
                 return value;
-            }
 
             return string.Join(", ", (string[])value);
         }
