@@ -1,6 +1,6 @@
 ﻿namespace Solarus.Mvvm
 {
-    public abstract class ViewModelBase : ObservableObject
+    public abstract class ViewModelBase : ObservableObject, IViewModel
     {
         private bool _isLoading;
 
