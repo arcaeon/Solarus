@@ -6,19 +6,11 @@ namespace Solarus.Mvvm
 {
     public abstract class DialogModelBase : ViewModelBase, IDialogModel
     {
-        private string _title;
-
         public event EventHandler AcceptRequested;
         public event EventHandler CancelRequested;
         public event EventHandler CloseRequested;
 
         public ImageSource Icon { get; set; }
-
-        public string Title
-        {
-            get { return _title; }
-            set { SetProperty(ref _title, value); }
-        }
 
         public ICommand AcceptCommand
         {
