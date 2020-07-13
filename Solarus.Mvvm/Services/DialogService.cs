@@ -13,23 +13,23 @@ namespace Solarus.Mvvm.Services
 
         public static DialogService Instance { get; } = new DialogService();
 
-        public void Show(ICloseable dataContext)
+        public void Show(IDialogModel dataContext)
         {
             Show(dataContext, null);
         }
 
-        public void Show(ICloseable dataContext, Style style)
+        public void Show(IDialogModel dataContext, Style style)
         {
             DialogWindow dialog = CreateDialog(dataContext, style, false);
             dialog.Show();
         }
 
-        public bool? ShowDialog(ICloseable dataContext)
+        public bool? ShowDialog(IDialogModel dataContext)
         {
             return ShowDialog(dataContext, null);
         }
 
-        public bool? ShowDialog(ICloseable dataContext, Style style)
+        public bool? ShowDialog(IDialogModel dataContext, Style style)
         {
             DialogWindow dialog = CreateDialog(dataContext, style, true);
             return dialog.ShowDialog();
@@ -52,7 +52,7 @@ namespace Solarus.Mvvm.Services
             };
         }
 
-        private static DialogWindow CreateDialog(ICloseable dataContext, Style style, bool isModal)
+        private static DialogWindow CreateDialog(IDialogModel dataContext, Style style, bool isModal)
         {
             var dialog = new DialogWindow
             {

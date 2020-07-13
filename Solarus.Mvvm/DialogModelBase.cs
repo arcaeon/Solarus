@@ -4,7 +4,7 @@ using System.Windows.Media;
 
 namespace Solarus.Mvvm
 {
-    public abstract class DialogModelBase : ViewModelBase, ICloseable
+    public abstract class DialogModelBase : ViewModelBase, IDialogModel
     {
         private string _title;
 
