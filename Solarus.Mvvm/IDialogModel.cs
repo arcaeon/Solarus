@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Media;
 
 namespace Solarus.Mvvm
 {
@@ -6,5 +7,6 @@ namespace Solarus.Mvvm
     {
         event EventHandler AcceptRequested;
         event EventHandler CancelRequested;
+        ImageSource Icon { get; set; }
     }
 }
