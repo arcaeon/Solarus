@@ -3,7 +3,7 @@
 
   <PropertyGroup>
     <Product>Solarus</Product>
-    <Version>1.0.0-alpha.8</Version>
+    <Version>1.0.0-alpha.9</Version>
     <Authors>Arcaeon</Authors>
     <Copyright>© 2020 Arcaeon</Copyright>
   </PropertyGroup>
