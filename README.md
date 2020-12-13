@@ -5,7 +5,6 @@ Solarus is a lightweight MVVM framework and toolkit for .NET Core WPF applicatio
 ## Features
 
 - Implementations of INotifyPropertyChanged and ICommand
-- ViewModel factory with dependency injection support
 - Message Bus
 - Framework for displaying modal and modeless dialogs
 - Collection of XAML value converters
