@@ -2,7 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Windows;
 
-namespace Solarus.Mvvm.Services
+namespace Solarus.Wpf.Services
 {
     public sealed class ThemeManager : IThemeManager
     {
