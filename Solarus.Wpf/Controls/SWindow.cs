@@ -1,4 +1,4 @@
-﻿using Solarus.Wpf.Utilities;
+﻿using Solarus.Wpf.Extensions;
 using System;
 using System.Reflection;
 using System.Windows;
@@ -407,7 +407,7 @@ namespace Solarus.Wpf.Controls
         private void ShowSystemMenu()
         {
             Matrix transform = PresentationSource.FromVisual(this).CompositionTarget.TransformFromDevice;
-            Rect r = _titleBar.GetAbsolutePlacement(true);
+            Rect r = _titleBar.GetAbsolutePosition(true);
             Point p = transform.Transform(r.BottomLeft);
             p.Y += 6;
 
