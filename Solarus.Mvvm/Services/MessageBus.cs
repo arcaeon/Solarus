@@ -5,10 +5,10 @@ namespace Solarus.Mvvm.Services
 {
     public sealed class MessageBus : IMessageBus
     {
-        private readonly Dictionary<Type, List<object>> _subscribers = 
+        private readonly Dictionary<Type, List<object>> _subscriptions = 
             new Dictionary<Type, List<object>>();
 
-        private readonly object _lock = new object();
+        private readonly object _subscriptionsLock = new object();
 
         static MessageBus() { }
 
@@ -16,59 +16,61 @@ namespace Solarus.Mvvm.Services
 
         public static MessageBus Instance { get; } = new MessageBus();
 
-        public void Publish<TMessage>(TMessage message)
-        {
-            if (message == null)
-            {
-                throw new ArgumentNullException(nameof(message));
-            }
-
-            Type messageType = typeof(TMessage);
-            lock (_lock)
-            {
-                if (_subscribers.ContainsKey(messageType))
-                {
-                    List<object> subscriptions = _subscribers[messageType];
-                    foreach (object subscription in subscriptions)
-                    {
-                        ((Action<TMessage>)subscription).Invoke(message);
-                    }
-                }
-            }
-        }
-
         public void Subscribe<TMessage>(Action<TMessage> action)
         {
+            if (action == null)
+                throw new ArgumentNullException(nameof(action));
+
             Type messageType = typeof(TMessage);
-            lock (_lock)
+            lock (_subscriptionsLock)
             {
-                if (_subscribers.ContainsKey(messageType))
+                if (_subscriptions.ContainsKey(messageType))
                 {
-                    List<object> subscriptions = _subscribers[messageType];
+                    List<object> subscriptions = _subscriptions[messageType];
                     subscriptions.Add(action);
                 }
                 else
                 {
                     var subscriptions = new List<object> { action };
-                    _subscribers[messageType] = subscriptions;
+                    _subscriptions[messageType] = subscriptions;
                 }
             }
         }
 
         public void Unsubscribe<TMessage>(Action<TMessage> action)
         {
-            Type messageType = typeof(TMessage);
-            lock (_lock)
-            {
-                if (_subscribers.ContainsKey(messageType))
-                {
-                    List<object> subscriptions = _subscribers[messageType];
-                    subscriptions.Remove(action);
+            if (action == null)
+                throw new ArgumentNullException(nameof(action));
 
-                    if (subscriptions.Count == 0)
-                    {
-                        _subscribers.Remove(messageType);
-                    }
+            Type messageType = typeof(TMessage);
+            lock (_subscriptionsLock)
+            {
+                if (!_subscriptions.ContainsKey(messageType))
+                    return;
+
+                List<object> subscriptions = _subscriptions[messageType];
+                subscriptions.Remove(action);
+
+                if (subscriptions.Count == 0)
+                    _subscriptions.Remove(messageType);
+            }
+        }
+
+        public void Publish<TMessage>(TMessage message)
+        {
+            if (message == null)
+                throw new ArgumentNullException(nameof(message));
+
+            Type messageType = typeof(TMessage);
+            lock (_subscriptionsLock)
+            {
+                if (!_subscriptions.ContainsKey(messageType))
+                    return;
+
+                List<object> subscriptions = _subscriptions[messageType];
+                foreach (object subscription in subscriptions)
+                {
+                    ((Action<TMessage>)subscription).Invoke(message);
                 }
             }
         }
