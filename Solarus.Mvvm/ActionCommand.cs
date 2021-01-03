@@ -15,7 +15,7 @@ namespace Solarus.Mvvm
 
         public ActionCommand(Action<object> action, Predicate<object> predicate)
         {
-            _action = action ?? throw new ArgumentException(nameof(action));
+            _action = action ?? throw new ArgumentNullException(nameof(action));
             _predicate = predicate;
         }
 
